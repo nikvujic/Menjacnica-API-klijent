@@ -1,16 +1,25 @@
 package menjacnica.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.io.FileReader;
+import java.util.LinkedList;
+import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import menjacnica.Zemlja;
 
 public class GlavniProzor extends JFrame {
 
@@ -24,6 +33,27 @@ public class GlavniProzor extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JButton btnKonvertuj;
+
+	static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();
+	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					fillZemljeList();
+					GlavniProzor frame = new GlavniProzor();
+					frame.setVisible(true);
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
@@ -47,6 +77,7 @@ public class GlavniProzor extends JFrame {
 		contentPane.add(getTextField_1());
 		contentPane.add(getBtnKonvertuj());
 	}
+
 	private JLabel getLblIzValuteZemlje() {
 		if (lblIzValuteZemlje == null) {
 			lblIzValuteZemlje = new JLabel("Iz valute zemlje:");
@@ -54,6 +85,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return lblIzValuteZemlje;
 	}
+
 	private JLabel getLblUValutuZemlje() {
 		if (lblUValutuZemlje == null) {
 			lblUValutuZemlje = new JLabel("U valutu zemlje:");
@@ -61,20 +93,29 @@ public class GlavniProzor extends JFrame {
 		}
 		return lblUValutuZemlje;
 	}
+
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
 			comboBox.setBounds(54, 63, 131, 24);
+			for (int i = 0; i < zemlje.size(); i++) {
+				comboBox.addItem(zemlje.get(i).getName());
+			}
 		}
 		return comboBox;
 	}
+
 	private JComboBox getComboBox_1() {
 		if (comboBox_1 == null) {
 			comboBox_1 = new JComboBox();
 			comboBox_1.setBounds(262, 63, 131, 24);
+			for (int i = 0; i < zemlje.size(); i++) {
+				comboBox_1.addItem(zemlje.get(i).getName());
+			}
 		}
 		return comboBox_1;
 	}
+
 	private JLabel getLblIznos() {
 		if (lblIznos == null) {
 			lblIznos = new JLabel("Iznos:");
@@ -82,6 +123,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return lblIznos;
 	}
+
 	private JLabel getLblIznos_1() {
 		if (lblIznos_1 == null) {
 			lblIznos_1 = new JLabel("Iznos:");
@@ -89,6 +131,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return lblIznos_1;
 	}
+
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
@@ -97,6 +140,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return textField;
 	}
+
 	private JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
@@ -105,11 +149,46 @@ public class GlavniProzor extends JFrame {
 		}
 		return textField_1;
 	}
+
 	private JButton getBtnKonvertuj() {
 		if (btnKonvertuj == null) {
 			btnKonvertuj = new JButton("Konvertuj");
 			btnKonvertuj.setBounds(172, 197, 105, 25);
 		}
 		return btnKonvertuj;
+	}
+
+	private static void fillZemljeList() {
+		try (FileReader input = new FileReader("data/countries.json")) {
+			JsonObject jsonData = gson.fromJson(input, JsonObject.class);
+			jsonData = (JsonObject) jsonData.get("results");
+
+			for (Map.Entry<String, JsonElement> valueEntry : jsonData.entrySet()) {
+				JsonObject element = (JsonObject) valueEntry.getValue();
+				Zemlja zemlja = new Zemlja();
+				for (Map.Entry<String, JsonElement> cE : element.entrySet()) {
+					String[] data = cE.toString().split("=");
+
+					String comp = data[0].toString();
+					
+					if (comp.equals("alpha3")) {
+						zemlja.setAlpha3(data[1].replace("\"", ""));
+					} else if (comp.equals("currencyId")) {
+						zemlja.setCurrencyId(data[1].replace("\"", ""));
+					} else if (comp.equals("currencyName")) {
+						zemlja.setCurrencyName(data[1].replace("\"", ""));
+					} else if (comp.equals("currencySymbol")) {
+						zemlja.setCurrencySymbol(data[1].replace("\"", ""));
+					} else if (comp.equals("id")) {
+						zemlja.setId(data[1].replace("\"", ""));
+					} else if (comp.equals("name")) {
+						zemlja.setName(data[1].replace("\"", ""));
+					}
+				}
+				zemlje.add(zemlja);
+			}
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+		}
 	}
 }

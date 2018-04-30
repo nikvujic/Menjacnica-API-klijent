@@ -15,10 +15,10 @@ public class SODodajZemlje {
 			String content = URLConnectionUtil.getContent(url);
 			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			JsonObject jsonResult = gson.fromJson(content, JsonObject.class);
+			JsonObject jsonData = gson.fromJson(content, JsonObject.class);
 			
 			try (FileWriter output = new FileWriter("data/countries.json")){
-				output.write(gson.toJson(jsonResult));
+				output.write(gson.toJson(jsonData));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

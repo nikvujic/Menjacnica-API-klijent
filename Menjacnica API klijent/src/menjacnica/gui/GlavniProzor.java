@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -19,7 +20,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import menjacnica.Menjacnica;
 import menjacnica.Zemlja;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -153,6 +157,45 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnKonvertuj() {
 		if (btnKonvertuj == null) {
 			btnKonvertuj = new JButton("Konvertuj");
+			btnKonvertuj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String fromPunNaziv = (String) comboBox.getSelectedItem();
+					String toPunNaziv = (String) comboBox_1.getSelectedItem();
+
+					String from = "";
+					String to = "";
+					for (int i = 0; i < zemlje.size(); i++) {
+						if (zemlje.get(i).getName().equals(fromPunNaziv)) {
+							from = zemlje.get(i).getCurrencyId();
+						}
+						if (zemlje.get(i).getName().equals(toPunNaziv)) {
+							to = zemlje.get(i).getCurrencyId();
+						}
+					}
+
+					System.out.println("from: " + from + "\tto: " + to);
+
+					double kurs = 0;
+					try {
+						kurs = Menjacnica.getKurs(from, to);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(contentPane,
+								"Nema rezultata za date parametre. Moguci razlozi:  \nNiste konektovani na internet\nGreska servera",
+								to, JOptionPane.INFORMATION_MESSAGE);
+					}
+
+					double fromVrednost = 0;
+					try {
+						fromVrednost = Double.parseDouble(textField.getText());
+					} catch (Exception e2) {
+						textField.setText("Unesite ispravan broj");
+						return;
+					}
+					double toVrednost = fromVrednost * kurs;
+
+					textField_1.setText("" + toVrednost);
+				}
+			});
 			btnKonvertuj.setBounds(172, 197, 105, 25);
 		}
 		return btnKonvertuj;
@@ -170,7 +213,7 @@ public class GlavniProzor extends JFrame {
 					String[] data = cE.toString().split("=");
 
 					String comp = data[0].toString();
-					
+
 					if (comp.equals("alpha3")) {
 						zemlja.setAlpha3(data[1].replace("\"", ""));
 					} else if (comp.equals("currencyId")) {

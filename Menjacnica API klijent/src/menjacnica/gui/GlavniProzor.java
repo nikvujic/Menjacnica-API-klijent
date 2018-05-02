@@ -1,7 +1,11 @@
 package menjacnica.gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -21,9 +25,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import menjacnica.Menjacnica;
+import menjacnica.Zapis;
 import menjacnica.Zemlja;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -39,6 +42,7 @@ public class GlavniProzor extends JFrame {
 	private JButton btnKonvertuj;
 
 	static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();
+	static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	/**
@@ -48,6 +52,7 @@ public class GlavniProzor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Menjacnica.napuniListuZapisa(zapisi);
 					fillZemljeList();
 					GlavniProzor frame = new GlavniProzor();
 					frame.setVisible(true);
@@ -159,6 +164,10 @@ public class GlavniProzor extends JFrame {
 			btnKonvertuj = new JButton("Konvertuj");
 			btnKonvertuj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:s.SSSSSS");
+					String datum = sdf.format(date);
+
 					String fromPunNaziv = (String) comboBox.getSelectedItem();
 					String toPunNaziv = (String) comboBox_1.getSelectedItem();
 
@@ -172,8 +181,6 @@ public class GlavniProzor extends JFrame {
 							to = zemlje.get(i).getCurrencyId();
 						}
 					}
-
-					System.out.println("from: " + from + "\tto: " + to);
 
 					double kurs = 0;
 					try {
@@ -194,6 +201,11 @@ public class GlavniProzor extends JFrame {
 					double toVrednost = fromVrednost * kurs;
 
 					textField_1.setText("" + toVrednost);
+					
+					Zapis zapis = new Zapis(datum, from, to, kurs);
+					zapisi.add(zapis);
+					
+					Menjacnica.azurirajZapise(zapisi);
 				}
 			});
 			btnKonvertuj.setBounds(172, 197, 105, 25);

@@ -1,0 +1,26 @@
+[
+  {
+    "datumVreme": "2018-05-03 00:59:45.000204",
+    "izValuta": "AUD",
+    "uValuta": "TND",
+    "kurs": 1.877006
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:26.000612",
+    "izValuta": "EUR",
+    "uValuta": "RSD",
+    "kurs": 116.177563
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:31.000691",
+    "izValuta": "EUR",
+    "uValuta": "RSD",
+    "kurs": 116.177563
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:34.000843",
+    "izValuta": "AOA",
+    "uValuta": "RSD",
+    "kurs": 0.430592
+  }
+]

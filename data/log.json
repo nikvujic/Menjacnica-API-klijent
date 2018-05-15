@@ -82,5 +82,35 @@
     "izValuta": "SAR",
     "uValuta": "AFN",
     "kurs": 18.90615
+  },
+  {
+    "datumVreme": "2018-05-15 16:13:19.000860",
+    "izValuta": "AUD",
+    "uValuta": "AFN",
+    "kurs": 52.851247
+  },
+  {
+    "datumVreme": "2018-05-15 16:13:23.000275",
+    "izValuta": "MNT",
+    "uValuta": "AFN",
+    "kurs": 0.029616
+  },
+  {
+    "datumVreme": "2018-05-15 16:16:51.000311",
+    "izValuta": "AFN",
+    "uValuta": "AFN",
+    "kurs": 1.0
+  },
+  {
+    "datumVreme": "2018-05-15 16:33:28.000365",
+    "izValuta": "BDT",
+    "uValuta": "AFN",
+    "kurs": 0.838161
+  },
+  {
+    "datumVreme": "2018-05-15 16:33:51.000846",
+    "izValuta": "XOF",
+    "uValuta": "XOF",
+    "kurs": 1.0
   }
 ]

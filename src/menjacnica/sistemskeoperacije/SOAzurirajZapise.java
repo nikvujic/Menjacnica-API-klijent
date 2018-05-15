@@ -17,7 +17,7 @@ public class SOAzurirajZapise {
 	 * 
 	 * @param zapisi predstavlja listu zapisa
 	 */
-	public static void izvrsi(LinkedList<Zapis> zapisi) {
+	public static void izvrsi(LinkedList<Zapis> zapisi, String putanjaZaLogJson) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 		JsonArray jsonNiz = new JsonArray();
@@ -34,7 +34,7 @@ public class SOAzurirajZapise {
 			jsonNiz.add(jsonZapis);
 		}
 
-		try (FileWriter output = new FileWriter("data/log.json")) {
+		try (FileWriter output = new FileWriter(putanjaZaLogJson)) {
 			output.write(gson.toJson(jsonNiz));
 		} catch (Exception e) {
 			System.err.println("Greska, " + e.getMessage());

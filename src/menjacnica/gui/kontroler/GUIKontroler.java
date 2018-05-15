@@ -32,7 +32,7 @@ public class GUIKontroler {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menjacnica.napuniListuZapisa(zapisi);
+					zapisi = Menjacnica.vratiListuZapisa();
 					napuniZemljeList();
 					GlavniProzor frame = new GlavniProzor();
 					frame.setVisible(true);
@@ -126,6 +126,7 @@ public class GUIKontroler {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void napuniComboBoxove(GlavniProzor glavniProzor) {
 		for (int i = 0; i < zemlje.size(); i++) {
 			glavniProzor.comboBox.addItem(zemlje.get(i).getName());

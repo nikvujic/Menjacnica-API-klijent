@@ -10,19 +10,19 @@ import com.google.gson.JsonObject;
 
 import menjacnica.Zapis;
 
-public class SONapuniListuZapisa {
+public class SOVratiListuZapisa {
 
 	/**
 	 * Puni listu zapisa sa zapisima iz data/log.json fajla
 	 * 
 	 * @param zapisi predstavlja listu zapisa
 	 */
-	public static void izvrsi(LinkedList<Zapis> zapisi) {
+	public static LinkedList<Zapis> izvrsi(LinkedList<Zapis> zapisi, String putanjaZaLogJson) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 		JsonArray jsonNiz = new JsonArray();
 
-		try (FileReader input = new FileReader("data/log.json")) {
+		try (FileReader input = new FileReader(putanjaZaLogJson)) {
 			jsonNiz = gson.fromJson(input, JsonArray.class);
 		} catch (Exception e) {
 			System.err.println("Greska, " + e.getMessage());
@@ -44,6 +44,8 @@ public class SONapuniListuZapisa {
 
 			zapisi.add(zapis);
 		}
+		
+		return zapisi;
 	}
 
 }

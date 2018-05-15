@@ -153,6 +153,7 @@ public class GlavniProzor extends JFrame {
 	private JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
+			textField_1.setEditable(false);
 			textField_1.setBounds(262, 138, 131, 19);
 			textField_1.setColumns(10);
 		}
@@ -195,7 +196,10 @@ public class GlavniProzor extends JFrame {
 					try {
 						fromVrednost = Double.parseDouble(textField.getText());
 					} catch (Exception e2) {
-						textField.setText("Unesite ispravan broj");
+						JOptionPane.showMessageDialog(contentPane,
+								"Morate uneti ispravan broj!",
+								to, JOptionPane.INFORMATION_MESSAGE);
+						textField.setText("");
 						return;
 					}
 					double toVrednost = fromVrednost * kurs;

@@ -27,42 +27,22 @@ import com.google.gson.JsonObject;
 import menjacnica.Menjacnica;
 import menjacnica.Zapis;
 import menjacnica.Zemlja;
+import menjacnica.gui.kontroler.GUIKontroler;
 
 public class GlavniProzor extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	private JLabel lblIzValuteZemlje;
 	private JLabel lblUValutuZemlje;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	public JComboBox comboBox;
+	public JComboBox comboBox_1;
 	private JLabel lblIznos;
 	private JLabel lblIznos_1;
-	private JTextField textField;
-	private JTextField textField_1;
+	public JTextField textField;
+	public JTextField textField_1;
 	private JButton btnKonvertuj;
-
-	static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();
-	static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
-	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menjacnica.napuniListuZapisa(zapisi);
-					fillZemljeList();
-					GlavniProzor frame = new GlavniProzor();
-					frame.setVisible(true);
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private GlavniProzor glavniProzor = this;
 
 	/**
 	 * Create the frame.
@@ -85,6 +65,8 @@ public class GlavniProzor extends JFrame {
 		contentPane.add(getTextField());
 		contentPane.add(getTextField_1());
 		contentPane.add(getBtnKonvertuj());
+		
+		GUIKontroler.napuniComboBoxove(glavniProzor);
 	}
 
 	private JLabel getLblIzValuteZemlje() {
@@ -107,9 +89,6 @@ public class GlavniProzor extends JFrame {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
 			comboBox.setBounds(54, 63, 131, 24);
-			for (int i = 0; i < zemlje.size(); i++) {
-				comboBox.addItem(zemlje.get(i).getName());
-			}
 		}
 		return comboBox;
 	}
@@ -118,9 +97,6 @@ public class GlavniProzor extends JFrame {
 		if (comboBox_1 == null) {
 			comboBox_1 = new JComboBox();
 			comboBox_1.setBounds(262, 63, 131, 24);
-			for (int i = 0; i < zemlje.size(); i++) {
-				comboBox_1.addItem(zemlje.get(i).getName());
-			}
 		}
 		return comboBox_1;
 	}
@@ -165,51 +141,7 @@ public class GlavniProzor extends JFrame {
 			btnKonvertuj = new JButton("Konvertuj");
 			btnKonvertuj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Date date = new Date();
-					SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:s.SSSSSS");
-					String datum = sdf.format(date);
-
-					String fromPunNaziv = (String) comboBox.getSelectedItem();
-					String toPunNaziv = (String) comboBox_1.getSelectedItem();
-
-					String from = "";
-					String to = "";
-					for (int i = 0; i < zemlje.size(); i++) {
-						if (zemlje.get(i).getName().equals(fromPunNaziv)) {
-							from = zemlje.get(i).getCurrencyId();
-						}
-						if (zemlje.get(i).getName().equals(toPunNaziv)) {
-							to = zemlje.get(i).getCurrencyId();
-						}
-					}
-
-					double kurs = 0;
-					try {
-						kurs = Menjacnica.getKurs(from, to);
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(contentPane,
-								"Nema rezultata za date parametre. Moguci razlozi:  \nNiste konektovani na internet\nGreska servera",
-								to, JOptionPane.INFORMATION_MESSAGE);
-					}
-
-					double fromVrednost = 0;
-					try {
-						fromVrednost = Double.parseDouble(textField.getText());
-					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(contentPane,
-								"Morate uneti ispravan broj!",
-								to, JOptionPane.INFORMATION_MESSAGE);
-						textField.setText("");
-						return;
-					}
-					double toVrednost = fromVrednost * kurs;
-
-					textField_1.setText("" + toVrednost);
-					
-					Zapis zapis = new Zapis(datum, from, to, kurs);
-					zapisi.add(zapis);
-					
-					Menjacnica.azurirajZapise(zapisi);
+					GUIKontroler.konvertuj(glavniProzor);
 				}
 			});
 			btnKonvertuj.setBounds(172, 197, 105, 25);
@@ -217,37 +149,4 @@ public class GlavniProzor extends JFrame {
 		return btnKonvertuj;
 	}
 
-	private static void fillZemljeList() {
-		try (FileReader input = new FileReader("data/countries.json")) {
-			JsonObject jsonData = gson.fromJson(input, JsonObject.class);
-			jsonData = (JsonObject) jsonData.get("results");
-
-			for (Map.Entry<String, JsonElement> valueEntry : jsonData.entrySet()) {
-				JsonObject element = (JsonObject) valueEntry.getValue();
-				Zemlja zemlja = new Zemlja();
-				for (Map.Entry<String, JsonElement> cE : element.entrySet()) {
-					String[] data = cE.toString().split("=");
-
-					String comp = data[0].toString();
-
-					if (comp.equals("alpha3")) {
-						zemlja.setAlpha3(data[1].replace("\"", ""));
-					} else if (comp.equals("currencyId")) {
-						zemlja.setCurrencyId(data[1].replace("\"", ""));
-					} else if (comp.equals("currencyName")) {
-						zemlja.setCurrencyName(data[1].replace("\"", ""));
-					} else if (comp.equals("currencySymbol")) {
-						zemlja.setCurrencySymbol(data[1].replace("\"", ""));
-					} else if (comp.equals("id")) {
-						zemlja.setId(data[1].replace("\"", ""));
-					} else if (comp.equals("name")) {
-						zemlja.setName(data[1].replace("\"", ""));
-					}
-				}
-				zemlje.add(zemlja);
-			}
-		} catch (Exception e) {
-			System.err.println("Error: " + e.getMessage());
-		}
-	}
 }

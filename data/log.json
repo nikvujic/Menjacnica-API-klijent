@@ -64,5 +64,23 @@
     "izValuta": "SBD",
     "uValuta": "BDT",
     "kurs": 10.820231
+  },
+  {
+    "datumVreme": "2018-05-15 16:12:41.000181",
+    "izValuta": "BDT",
+    "uValuta": "AFN",
+    "kurs": 0.838161
+  },
+  {
+    "datumVreme": "2018-05-15 16:12:45.000922",
+    "izValuta": "AFN",
+    "uValuta": "AFN",
+    "kurs": 1.0
+  },
+  {
+    "datumVreme": "2018-05-15 16:12:48.000570",
+    "izValuta": "SAR",
+    "uValuta": "AFN",
+    "kurs": 18.90615
   }
 ]

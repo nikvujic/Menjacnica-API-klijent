@@ -1,0 +1,68 @@
+[
+  {
+    "datumVreme": "2018-05-03 00:59:45.000204",
+    "izValuta": "AUD",
+    "uValuta": "TND",
+    "kurs": 1.877006
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:26.000612",
+    "izValuta": "EUR",
+    "uValuta": "RSD",
+    "kurs": 116.177563
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:31.000691",
+    "izValuta": "EUR",
+    "uValuta": "RSD",
+    "kurs": 116.177563
+  },
+  {
+    "datumVreme": "2018-05-03 01:00:34.000843",
+    "izValuta": "AOA",
+    "uValuta": "RSD",
+    "kurs": 0.430592
+  },
+  {
+    "datumVreme": "2018-05-05 23:48:39.000230",
+    "izValuta": "XOF",
+    "uValuta": "BDT",
+    "kurs": 0.151307
+  },
+  {
+    "datumVreme": "2018-05-05 23:48:56.000638",
+    "izValuta": "XOF",
+    "uValuta": "BDT",
+    "kurs": 0.151307
+  },
+  {
+    "datumVreme": "2018-05-05 23:49:0.000502",
+    "izValuta": "XOF",
+    "uValuta": "BDT",
+    "kurs": 0.151307
+  },
+  {
+    "datumVreme": "2018-05-06 17:47:10.000465",
+    "izValuta": "KHR",
+    "uValuta": "AFN",
+    "kurs": 0.017428
+  },
+  {
+    "datumVreme": "2018-05-10 18:41:47.000766",
+    "izValuta": "SBD",
+    "uValuta": "AFN",
+    "kurs": 9.027537
+  },
+  {
+    "datumVreme": "2018-05-10 18:42:4.000303",
+    "izValuta": "SBD",
+    "uValuta": "BDT",
+    "kurs": 10.820231
+  },
+  {
+    "datumVreme": "2018-05-10 18:42:8.000689",
+    "izValuta": "SBD",
+    "uValuta": "BDT",
+    "kurs": 10.820231
+  }
+]

@@ -10,14 +10,14 @@ import com.google.gson.JsonObject;
 import logika.Menjacnica;
 
 public class SODodajZemlje {
-	public static void izvrsi(String url) {
+	public static void izvrsi(String url, String lokacijaZemljeJson) {
 		try {
 			String content = Menjacnica.getContent(url);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			JsonObject jsonData = gson.fromJson(content, JsonObject.class);
 
-			try (FileWriter output = new FileWriter("data/countries.json")) {
+			try (FileWriter output = new FileWriter(lokacijaZemljeJson)) {
 				output.write(gson.toJson(jsonData));
 			} catch (Exception e) {
 				e.printStackTrace();

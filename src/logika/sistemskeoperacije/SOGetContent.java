@@ -1,4 +1,4 @@
-package menjacnica.service;
+package logika.sistemskeoperacije;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class URLConnectionUtil {
+public class SOGetContent {
 
-	public static String getContent(String url) throws IOException {
+	public static String izvrsi(String url) throws IOException {
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		
@@ -32,4 +32,5 @@ public class URLConnectionUtil {
  
 		return response.toString();
 	}
+
 }

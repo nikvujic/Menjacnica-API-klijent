@@ -1,4 +1,4 @@
-package menjacnica;
+package klase;
 
 public class Zemlja {
 	private String id;

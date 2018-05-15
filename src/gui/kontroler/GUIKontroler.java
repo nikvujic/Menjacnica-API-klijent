@@ -1,4 +1,4 @@
-package menjacnica.gui.kontroler;
+package gui.kontroler;
 
 import java.awt.EventQueue;
 import java.io.FileReader;
@@ -15,10 +15,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import menjacnica.Menjacnica;
-import menjacnica.Zapis;
-import menjacnica.Zemlja;
-import menjacnica.gui.GlavniProzor;
+import gui.GlavniProzor;
+import klase.Zapis;
+import klase.Zemlja;
+import logika.Menjacnica;
 
 public class GUIKontroler {
 	private static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();

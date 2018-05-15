@@ -1,33 +1,17 @@
-package menjacnica.gui;
+package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import menjacnica.Menjacnica;
-import menjacnica.Zapis;
-import menjacnica.Zemlja;
-import menjacnica.gui.kontroler.GUIKontroler;
+import gui.kontroler.GUIKontroler;
 
 public class GlavniProzor extends JFrame {
 

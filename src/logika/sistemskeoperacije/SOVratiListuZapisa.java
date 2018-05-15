@@ -1,4 +1,4 @@
-package menjacnica.sistemskeoperacije;
+package logika.sistemskeoperacije;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import menjacnica.Zapis;
+import klase.Zapis;
 
 public class SOVratiListuZapisa {
 

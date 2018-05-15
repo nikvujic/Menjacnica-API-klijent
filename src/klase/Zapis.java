@@ -1,6 +1,4 @@
-package menjacnica;
-
-import java.util.Date;
+package klase;
 
 public class Zapis {
 	private String datumVreme;

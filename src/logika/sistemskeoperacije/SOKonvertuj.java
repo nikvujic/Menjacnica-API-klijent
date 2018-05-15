@@ -1,13 +1,11 @@
-package menjacnica.sistemskeoperacije;
-
-import java.io.FileWriter;
+package logika.sistemskeoperacije;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import menjacnica.service.URLConnectionUtil;
+import logika.Menjacnica;
 
 public class SOKonvertuj {
 
@@ -17,7 +15,7 @@ public class SOKonvertuj {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
-		String content = URLConnectionUtil.getContent(url);
+		String content = Menjacnica.getContent(url);
 		JsonObject jsonData = gson.fromJson(content, JsonObject.class);	
 		
 		JsonElement jsonQuery = jsonData.get("query");

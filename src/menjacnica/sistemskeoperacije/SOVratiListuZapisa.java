@@ -1,6 +1,9 @@
 package menjacnica.sistemskeoperacije;
 
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 
 import com.google.gson.Gson;
@@ -25,7 +28,11 @@ public class SOVratiListuZapisa {
 		try (FileReader input = new FileReader(putanjaZaLogJson)) {
 			jsonNiz = gson.fromJson(input, JsonArray.class);
 		} catch (Exception e) {
-			System.err.println("Greska, " + e.getMessage());
+			try (PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(putanjaZaLogJson)));) {
+				output.print("[]");  //pravljenje novog json fajla sa praznom lisom
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 
 		for (int i = 0; i < jsonNiz.size(); i++) {

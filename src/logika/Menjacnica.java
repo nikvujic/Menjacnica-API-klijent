@@ -19,12 +19,10 @@ import logika.sistemskeoperacije.SOVratiListuZapisa;
  */
 public class Menjacnica {
 	private static final String putanjaZaLogJson = "data/log.json";
-	private static final String lokacijaZemljeJson = "data/countries.json";
-	private static final String linkZaZemlje = "http://free.currencyconverterapi.com/api/v3/countries";
 	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	
 	public static void dodajZemlje() {
-		SODodajZemlje.izvrsi(linkZaZemlje, lokacijaZemljeJson);
+		SODodajZemlje.izvrsi();
 	}
 	
 	public static double getKurs(String from, String to) throws Exception {

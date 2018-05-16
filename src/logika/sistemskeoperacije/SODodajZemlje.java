@@ -10,9 +10,12 @@ import com.google.gson.JsonObject;
 import logika.Menjacnica;
 
 public class SODodajZemlje {
-	public static void izvrsi(String url, String lokacijaZemljeJson) {
+	private final static String linkZaZemlje = "http://free.currencyconverterapi.com/api/v3/countries";
+	private final static String lokacijaZemljeJson = "data/countries.json";
+
+	public static void izvrsi() {
 		try {
-			String content = Menjacnica.getContent(url);
+			String content = Menjacnica.getContent(linkZaZemlje);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			JsonObject jsonData = gson.fromJson(content, JsonObject.class);

@@ -27,7 +27,7 @@ public class Menjacnica {
 		SODodajZemlje.izvrsi();
 	}
 
-	public static double getKurs(String from, String to) throws Exception {
+	public double getKurs(String from, String to) throws Exception {
 		return SOKonvertuj.izvrsi(from, to);
 	}
 
@@ -36,7 +36,7 @@ public class Menjacnica {
 	 * 
 	 * @param zapisi
 	 */
-	public static void azurirajZapise(LinkedList<Zapis> zapisi) {
+	public void azurirajZapise(LinkedList<Zapis> zapisi) {
 		SOAzurirajZapise.izvrsi(zapisi, putanjaZaLogJson);
 	}
 
@@ -45,7 +45,7 @@ public class Menjacnica {
 	 * 
 	 * @return lista sa svim zapisima iz fajla
 	 */
-	public static LinkedList<Zapis> vratiListuZapisa() {
+	public LinkedList<Zapis> vratiListuZapisa() {
 		return SOVratiListuZapisa.izvrsi(putanjaZaLogJson);
 	}
 

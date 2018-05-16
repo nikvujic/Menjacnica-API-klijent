@@ -33,7 +33,7 @@ public class GUIKontroler {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					zapisi = Menjacnica.vratiListuZapisa();
+					zapisi = menjacnica.vratiListuZapisa();
 					napuniZemljeList();
 					GlavniProzor frame = new GlavniProzor();
 					frame.setVisible(true);
@@ -102,7 +102,7 @@ public class GUIKontroler {
 
 		double kurs = 0;
 		try {
-			kurs = Menjacnica.getKurs(from, to);
+			kurs = menjacnica.getKurs(from, to);
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(glavniProzor.contentPane,
 					"Nema rezultata za date parametre. Moguci razlozi:  \nNiste konektovani na internet\nGreska servera",
@@ -125,7 +125,7 @@ public class GUIKontroler {
 		Zapis zapis = new Zapis(datum, from, to, kurs);
 		zapisi.add(zapis);
 
-		Menjacnica.azurirajZapise(zapisi);  // TODO: 
+		menjacnica.azurirajZapise(zapisi);  // TODO: 
 
 	}
 

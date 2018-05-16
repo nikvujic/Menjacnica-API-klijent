@@ -18,16 +18,15 @@ import logika.sistemskeoperacije.SOVratiListuZapisa;
  *
  */
 public class Menjacnica {
-	private static final String putanjaZaLogJson = "data/log.json";
-	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
-	
+	private static final String putanjaZaLogJson = "data/log.json"; // TODO: da li staviti u sistemske opracije, jer
+																	// mora na dva mesta?
 	/**
 	 * Azurura zemlje.json fajl
 	 */
 	public void dodajZemlje() {
 		SODodajZemlje.izvrsi();
 	}
-	
+
 	public static double getKurs(String from, String to) throws Exception {
 		return SOKonvertuj.izvrsi(from, to);
 	}
@@ -41,10 +40,15 @@ public class Menjacnica {
 		SOAzurirajZapise.izvrsi(zapisi, putanjaZaLogJson);
 	}
 
+	/**
+	 * Vraca listu zapisa citajuci ih iz log.json fajla
+	 * 
+	 * @return lista sa svim zapisima iz fajla
+	 */
 	public static LinkedList<Zapis> vratiListuZapisa() {
-		return SOVratiListuZapisa.izvrsi(zapisi, putanjaZaLogJson);
+		return SOVratiListuZapisa.izvrsi(putanjaZaLogJson);
 	}
-	
+
 	public static String getContent(String url) throws IOException {
 		return SOGetContent.izvrsi(url);
 	}

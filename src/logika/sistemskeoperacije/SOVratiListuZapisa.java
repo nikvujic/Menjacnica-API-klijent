@@ -20,8 +20,9 @@ public class SOVratiListuZapisa {
 	 * 
 	 * @param zapisi predstavlja listu zapisa
 	 */
-	public static LinkedList<Zapis> izvrsi(LinkedList<Zapis> zapisi, String putanjaZaLogJson) {
+	public static LinkedList<Zapis> izvrsi(String putanjaZaLogJson) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		LinkedList<Zapis> zapisi = new LinkedList<Zapis>
 
 		JsonArray jsonNiz = new JsonArray();
 

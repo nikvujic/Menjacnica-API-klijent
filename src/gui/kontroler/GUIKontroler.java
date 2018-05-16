@@ -125,7 +125,7 @@ public class GUIKontroler {
 		Zapis zapis = new Zapis(datum, from, to, kurs);
 		zapisi.add(zapis);
 
-		Menjacnica.azurirajZapise(zapisi);  // linija 125
+		Menjacnica.azurirajZapise(zapisi);  // TODO: 
 
 	}
 

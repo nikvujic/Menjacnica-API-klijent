@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import logika.Menjacnica;
+import logika.URLConnectionUtil;
 
 public class SOKonvertuj {
 
@@ -15,7 +16,7 @@ public class SOKonvertuj {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
-		String content = Menjacnica.getContent(url);
+		String content = URLConnectionUtil.getContent(url);
 		JsonObject jsonData = gson.fromJson(content, JsonObject.class);	
 		
 		JsonElement jsonQuery = jsonData.get("query");

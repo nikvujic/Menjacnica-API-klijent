@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-import logika.Menjacnica;
+import logika.URLConnectionUtil;
 
 public class SODodajZemlje {
 	private final static String linkZaZemlje = "http://free.currencyconverterapi.com/api/v3/countries";
@@ -17,7 +17,7 @@ public class SODodajZemlje {
 
 	public static void izvrsi() {
 		try {
-			String content = Menjacnica.getContent(linkZaZemlje);
+			String content = URLConnectionUtil.getContent(linkZaZemlje);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			JsonObject jsonData = gson.fromJson(content, JsonObject.class);

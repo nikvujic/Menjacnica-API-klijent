@@ -19,7 +19,7 @@ import logika.sistemskeoperacije.SOVratiListuZapisa;
  */
 public class Menjacnica {
 	private static final String putanjaZaLogJson = "data/log.json"; // TODO: da li staviti u sistemske opracije, jer
-																	// mora na dva mesta?
+																	// mora na dva mesta? Zasto ne sve staticko?
 	/**
 	 * Azurura zemlje.json fajl
 	 */
@@ -47,9 +47,5 @@ public class Menjacnica {
 	 */
 	public LinkedList<Zapis> vratiListuZapisa() {
 		return SOVratiListuZapisa.izvrsi(putanjaZaLogJson);
-	}
-
-	public static String getContent(String url) throws IOException {
-		return SOGetContent.izvrsi(url);
 	}
 }

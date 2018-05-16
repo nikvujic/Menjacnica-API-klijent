@@ -24,6 +24,7 @@ public class GUIKontroler {
 	private static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();
 	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private static Menjacnica menjacnica = new Menjacnica();
 
 	/**
 	 * Launch the application.
@@ -45,6 +46,7 @@ public class GUIKontroler {
 	}
 
 	public static void napuniZemljeList() {
+		menjacnica.dodajZemlje();
 		try (FileReader input = new FileReader("data/countries.json")) {
 			JsonObject jsonData = gson.fromJson(input, JsonObject.class);
 			jsonData = (JsonObject) jsonData.get("results");

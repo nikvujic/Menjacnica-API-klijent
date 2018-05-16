@@ -1,7 +1,9 @@
 package logika.sistemskeoperacije;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,7 +25,11 @@ public class SODodajZemlje {
 			try (FileWriter output = new FileWriter(lokacijaZemljeJson)) {
 				output.write(gson.toJson(jsonData));
 			} catch (Exception e) {
-				e.printStackTrace();
+				try (PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(lokacijaZemljeJson)));) {
+					output.print("[]");
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		} catch (IOException e) {

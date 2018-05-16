@@ -21,7 +21,7 @@ public class Menjacnica {
 	private static final String putanjaZaLogJson = "data/log.json";
 	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	
-	public static void dodajZemlje() {
+	public void dodajZemlje() {
 		SODodajZemlje.izvrsi();
 	}
 	

@@ -90,6 +90,7 @@ public class GUIKontroler {
 
 		String from = "";
 		String to = "";
+		
 		for (int i = 0; i < zemlje.size(); i++) {
 			if (zemlje.get(i).getName().equals(fromPunNaziv)) {
 				from = zemlje.get(i).getCurrencyId();
@@ -124,7 +125,7 @@ public class GUIKontroler {
 		Zapis zapis = new Zapis(datum, from, to, kurs);
 		zapisi.add(zapis);
 
-		Menjacnica.azurirajZapise(zapisi);
+		Menjacnica.azurirajZapise(zapisi);  // linija 125
 
 	}
 

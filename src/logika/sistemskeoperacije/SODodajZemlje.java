@@ -31,7 +31,6 @@ public class SODodajZemlje {
 					e1.printStackTrace();
 				}
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

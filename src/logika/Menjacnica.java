@@ -21,6 +21,9 @@ public class Menjacnica {
 	private static final String putanjaZaLogJson = "data/log.json";
 	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	
+	/**
+	 * Azurura zemlje.json fajl
+	 */
 	public void dodajZemlje() {
 		SODodajZemlje.izvrsi();
 	}
@@ -29,6 +32,11 @@ public class Menjacnica {
 		return SOKonvertuj.izvrsi(from, to);
 	}
 
+	/**
+	 * Azurira log.json fajl po prosledjenoj listi
+	 * 
+	 * @param zapisi
+	 */
 	public static void azurirajZapise(LinkedList<Zapis> zapisi) {
 		SOAzurirajZapise.izvrsi(zapisi, putanjaZaLogJson);
 	}

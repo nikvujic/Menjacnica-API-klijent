@@ -22,7 +22,7 @@ public class SOVratiListuZapisa {
 	 */
 	public static LinkedList<Zapis> izvrsi(String putanjaZaLogJson) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		LinkedList<Zapis> zapisi = new LinkedList<Zapis>
+		LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 
 		JsonArray jsonNiz = new JsonArray();
 

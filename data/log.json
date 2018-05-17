@@ -4,5 +4,11 @@
     "izValuta": "AUD",
     "uValuta": "XOF",
     "kurs": 412.935287
+  },
+  {
+    "datumVreme": "2018-05-16 21:59:53.000207",
+    "izValuta": "AUD",
+    "uValuta": "BRL",
+    "kurs": 2.763767
   }
 ]

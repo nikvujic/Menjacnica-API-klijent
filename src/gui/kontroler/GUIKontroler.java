@@ -21,6 +21,7 @@ import klase.Zemlja;
 import logika.Menjacnica;
 
 public class GUIKontroler {
+	// TODO: zasto bez svega ovoga i gde
 	private static LinkedList<Zemlja> zemlje = new LinkedList<Zemlja>();
 	private static LinkedList<Zapis> zapisi = new LinkedList<Zapis>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -125,7 +126,7 @@ public class GUIKontroler {
 		Zapis zapis = new Zapis(datum, from, to, kurs);
 		zapisi.add(zapis);
 
-		menjacnica.azurirajZapise(zapisi);  // TODO: 
+		menjacnica.azurirajZapise(zapisi);  // TODO:  ...
 
 	}
 
